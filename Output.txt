@@ -1,0 +1,20 @@
+=== AI SENSOR TANKER SYSTEM STARTED ===
+Initializing sensors...
+Sensors Activated: pH, Turbidity, TDS, Temperature, Volume, Durability
+
+Enter sensor readings:
+pH: 6
+Turbidity (NTU): 6
+TDS (ppm): 400
+Temperature (°C): 1
+Volume (Litres): 1
+Durability (1-10 scale): 5
+-------------------------------------------
+⚠️ Water quality is LOW! Initiating purification process...
+High contamination detected → Starting Full Filtration Cycle...
+Adding disinfectant and chemicals automatically...
+Purification cycle complete.
+
+Enter sensor readings:
+pH: 5
+Turbidity (NTU): 

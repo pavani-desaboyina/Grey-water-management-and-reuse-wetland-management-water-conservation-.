@@ -1,0 +1,75 @@
+#include <stdio.h>
+
+// Define threshold values
+#define PH_MIN 6.5
+#define PH_MAX 8.5
+#define TDS_LIMIT 500
+#define TURBIDITY_LIMIT 1.0
+
+int main() {
+    float pH, turbidity, tds, temperature, volume, durability;
+    int purificationCount = 0;
+
+    printf("=== AI SENSOR TANKER SYSTEM STARTED ===\n");
+
+    // Step 1: Initialize Sensors
+    printf("Initializing sensors...\n");
+    printf("Sensors Activated: pH, Turbidity, TDS, Temperature, Volume, Durability\n\n");
+
+    // Step 2: Start Continuous Monitoring
+    while (1) {
+        printf("Enter sensor readings:\n");
+        printf("pH: "); scanf("%f", &pH);
+        printf("Turbidity (NTU): "); scanf("%f", &turbidity);
+        printf("TDS (ppm): "); scanf("%f", &tds);
+        printf("Temperature (°C): "); scanf("%f", &temperature);
+        printf("Volume (Litres): "); scanf("%f", &volume);
+        printf("Durability (1-10 scale): "); scanf("%f", &durability);
+        printf("-------------------------------------------\n");
+
+        // Step 3: Decision-making based on sensor data
+        if ((pH < PH_MIN || pH > PH_MAX) || tds > TDS_LIMIT || turbidity > TURBIDITY_LIMIT) {
+            printf("⚠️ Water quality is LOW! Initiating purification process...\n");
+            purificationCount++;
+
+            // Adjusting process based on contamination level
+            if (tds > 1000 || turbidity > 5) {
+                printf("High contamination detected → Starting Full Filtration Cycle...\n");
+                printf("Adding disinfectant and chemicals automatically...\n");
+            } else if (tds > 700 || turbidity > 2) {
+                printf("Medium contamination detected → Starting Partial Filtration...\n");
+                printf("Adding moderate chemical dose...\n");
+            } else {
+                printf("Minor contamination → Quick Purification Cycle activated.\n");
+            }
+
+            // Check durability and act
+            if (durability < 5) {
+                printf("⚙️  Filter durability low → Maintenance required soon.\n");
+            }
+
+            printf("Purification cycle complete.\n\n");
+        } else {
+            printf("✅ Water quality is within safe limits.\n");
+            printf("Fresh water is ready for storage.\n\n");
+            break;  // Exit loop when water becomes fresh
+        }
+
+        // Safety condition to prevent infinite loop
+        if (purificationCount >= 5) {
+            printf("⚠️ System ran multiple purification cycles.\n");
+            printf("Manual check recommended!\n");
+            break;
+        }
+    }
+
+    // Step 4: Final Status and Data Logging
+    printf("-------------------------------------------\n");
+    printf("Final Sensor Report:\n");
+    printf("pH: %.2f | TDS: %.2f ppm | Turbidity: %.2f NTU\n", pH, tds, turbidity);
+    printf("Durability: %.2f | Volume: %.2f L | Temperature: %.2f °C\n", durability, volume, temperature);
+    printf("System Status: ✅ Fresh Water Generated Successfully!\n");
+    printf("=== SYSTEM SHUTDOWN ===\n");
+
+    return 0;
+}
